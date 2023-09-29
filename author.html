@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Understanding Javascript</title>
+ </head>
+<body>
+
+<h2>Author entry - Sai Srikar Miriyala</h2>
+
+<form id="authorNameForm">
+    <label for="secretAuthorName">The hidden author name:</label>
+    <input type="password" id="secretAuthorName" value="Dickens"><br><br>
+
+    <label for="guessAuthorName">Guess the author:</label>
+    <input type="text" id="guessAuthorName"><br><br>
+
+    <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
+
+    <p>Results:</p>
+    <div id="result"></div>
+</form>
+<script>
+    let good = 0;
+    let oops = 0;
+    function checkAuthor() {
+        const secretAuthorName = document.getElementById("secretAuthorName").value;
+        const guessAuthorName = document.getElementById("guessAuthorName").value;
+
+        if (secretAuthorName === guessAuthorName) {
+            good++;
+            alert("You got it right");
+        } else {
+            oops++;
+            alert("Sorry");
+        }
+        const finalResultElement = document.getElementById("result");
+        finalResultElement.innerHTML = `Correct: ${good}, Incorrect: ${oops}`;
+    }
+</script>
+
+</body>
+</html> 
