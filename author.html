@@ -1,31 +1,38 @@
 <!DOCTYPE html>
-<html>
- <head>
+<html lang="en">
+<head>
     <title>Understanding Javascript</title>
- </head>
-<body>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
 
-<h2>Author entry - Sai Srikar Miriyala</h2>
+<h2 class="mb-4">Author entry - Sai Srikar Miriyala</h2>
+
+<div class="alert alert-danger" id="incorrectAlert" style="display: none;">Sorry, ran out of guesses.</div>
 
 <form id="authorNameForm">
     <label for="secretAuthorName">The hidden author name:</label>
-    <input type="password" id="secretAuthorName" value="Dickens"><br><br>
+    <input type="password" class="form-control" id="secretAuthorName" value="Dickens"><br><br>
 
     <label for="guessAuthorName">Guess the author:</label>
-    <input type="text" id="guessAuthorName"><br><br>
+    <input type="text" class="form-control" id="guessAuthorName"><br><br>
 
-    <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
+    <button type="button" class="btn btn-primary" onclick="checkAuthor()">Check the guess</button><br><br>
 
     <p>Results:</p>
-    <div id="result">Correct: 0, Incorrect: 0</div>
+    <div id="result" class="mb-4">Correct: 0, Incorrect: 0</div>
 </form>
 <br>
-<img src="Agra.jpg" alt="Agra" id= "imageChange" width="100px" height="100px" onclick="selectImage()">
-</br>
+<img src="Agra.jpg" alt="Agra" id="imageChange" class="img-fluid" width="100px" height="100px" onclick="selectImage()">
+<br>
+
 <script>
     let good = 0;
     let oops = 0;
-    var useImage=1;
+    let useImage = 1;
+    const maxIncorrectGuesses = 7;
+
     function checkAuthor() {
         const secretAuthorName = document.getElementById("secretAuthorName").value;
         const guessAuthorName = document.getElementById("guessAuthorName").value;
@@ -35,28 +42,39 @@
             alert("You got it right");
         } else {
             oops++;
-            alert("Sorry");
+            document.getElementById("result").innerHTML = `Correct: ${good}, Incorrect: ${oops}`;
+            if (oops >= maxIncorrectGuesses) {
+                // Disable the button and display the "ran out of guesses" alert
+                document.getElementById("incorrectAlert").style.display = "block";
+                document.getElementById("guessAuthorName").setAttribute("disabled", "true");
+                document.getElementById("secretAuthorName").setAttribute("disabled", "true");
+                document.getElementById("imageChange").setAttribute("onclick", "alert('Sorry, ran out of guesses.')");
+            } else {
+                alert("Sorry");
+            }
         }
-        const finalResultElement = document.getElementById("result");
-        finalResultElement.innerHTML = `Correct: ${good}, Incorrect: ${oops}`;
     }
+
     function selectImage() {
-           switch(useImage){
-              case 1:
-                document.getElementById("imageChange").src="Agra.jpg";
+        switch (useImage) {
+            case 1:
+                document.getElementById("imageChange").src = "Agra.jpg";
                 useImage++;
                 break;
-              case 2:
-                document.getElementById("imageChange").src="Indianapolis.jpg";
+            case 2:
+                document.getElementById("imageChange").src = "Indianapolis.jpg";
                 useImage++;
                 break;
-              case 3:
-              document.getElementById("imageChange").src="Melbourne.jpg";
-                useImage=1;
+            case 3:
+                document.getElementById("imageChange").src = "Melbourne.jpg";
+                useImage = 1;
                 break;
-           }
         }
+    }
 </script>
 
+<!-- Include Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>
