@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Goes on a Cruise</title>
+ </head>
+<body>
+
+<h1>Sai Srikar Miriyala goes on a cruise</h1>
+<form>
+    <input type="checkbox" id="sharing" name="shared" value="true">
+    <lable for="shared">Shares Cabin</lable><br>
+
+    <input type="checkbox" id="break" name="break" value="true">
+    <lable for="break">Breakfast</lable><br>
+
+    <input type="checkbox" id="Pool" name="Pool" value="false">
+    <lable for="Pool">Pool Pass</lable><br>
+
+    <input type="button" value="Select a cruise" onclick="selectCruise()">
+</form>
+<p id="resultCheck">This text will be replaced </p>
+<form>
+    <label for="days">Enter the number of days</label>
+    <input type ="text" id="days" name="days" value=days> <br>
+
+    <label for="price">Enter price</label>
+    <input type ="text" id="price" name="price" autofocus> <br>
+
+    <input type="button" onclick="updateCruise()" value="Update the cruise">
+</form>
+
+<script> 
+    var  my_cruise={};
+
+    function selectCruise() {
+        my_cruise={};
+        if(document.getElementById("sharing").checked) {
+            my_cruise["shared"]=true;
+        }
+        else
+        my_cruise.shared=false;
+
+        if(document.getElementById("break").checked) {
+            my_cruise.breakfast=true;
+        }
+        else
+        my_cruise.breakfast=false;
+
+        if(document.getElementById("Pool").checked) {
+            my_cruise.pool=true;
+        }
+        else
+        my_cruise.pool=false;
+        
+        document.getElementById("resultCheck").innerHTML="shared: " + my_cruise.shared + "; breakfast: "+my_cruise.breakfast+"; pool: "+my_cruise.pool+";";
+    }
+
+    function updateCruise() {
+        
+        var days = document.getElementById("days").value;
+        var price = document.getElementById("price").value;
+        my_cruise["days"]=days;
+        my_cruise["price"]=price;
+        document.getElementById("resultCheck").innerHTML="shared: " + my_cruise.shared + "; breakfast: "+my_cruise.breakfast+"; pool: "+my_cruise.pool+"; days: "+my_cruise.days+"; price: "+my_cruise.price+";";  
+    }
+</script>
+
+</body>
+</html>
