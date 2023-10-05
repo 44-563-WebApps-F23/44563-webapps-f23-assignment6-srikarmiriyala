@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <title>Tip Conversion</title>
+<body>
+
+<h2>Sai Srikar Miriyala shows tip amounts</h2>
+
+<form>
+    <label for="base">Enter base amount</label>
+    <input type="number" id="base" name="base" value=50> <br>
+
+    <label for="tip">Enter the tip percent</label>
+    <input type="number" id="tip" name="tip" value="15"> <br>
+
+    <input type="button" onclick="tips()" value="Show tip">
+</form>
+
+<p id="result">Result will be displayed here </p>
+<form>
+    <input onclick="chooseOp()" type="radio" id="add" name="rad" value="sum" >
+    <label for="add">sum</label></br>
+
+    <input onclick="chooseOp()" type="radio" id="diff" name="rad" value="difference">
+    <label for="diff">diff</label></br>
+
+    <input onclick="chooseOp()" type="radio" id="mult" name="rad" value="product">
+    <label for="mult">mult</label></br>
+</form>
+<p id="resultRad">This text will be replaced</p>
+<script>
+
+    function tips() {
+        var baseAmt = parseInt(document.getElementById("base").value);
+        var tipAmt = parseInt(document.getElementById("tip").value);
+        var myOutput = "";
+        for (var i = 0; i < 5; i++) {
+            myOutput = myOutput + (tipAmt + "% is ") + (baseAmt * (tipAmt / 100)).toFixed(2) + "; ";
+            tipAmt = tipAmt + 4;
+        }
+        document.getElementById("result").innerHTML = "Tips are: " + (myOutput);
+
+    }
+
+    function chooseOp() {
+        var base = parseInt(document.getElementById("base").value);
+        var tip = parseInt(document.getElementById("tip").value);
+        if (document.getElementById("add").checked)
+            document.getElementById("resultRad").innerHTML = "Sum of " + base + " and " + tip + " is " + (base + tip);
+        else if (document.getElementById("diff").checked)
+            document.getElementById("resultRad").innerHTML = "difference of " + base + " and " + tip + " is " + (base - tip);
+        else
+            document.getElementById("resultRad").innerHTML = "Product of " + base + " and " + tip + " is " + (base * tip);
+    }
+</script>
+</body>
+</html> 

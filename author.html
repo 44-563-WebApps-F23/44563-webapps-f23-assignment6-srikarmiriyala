@@ -17,11 +17,15 @@
     <input type="button" value="Check the guess" onclick="checkAuthor()"><br><br>
 
     <p>Results:</p>
-    <div id="result"></div>
+    <div id="result">Correct: 0, Incorrect: 0</div>
 </form>
+<br>
+<img src="Agra.jpg" alt="Agra" id= "imageChange" width="100px" height="100px" onclick="selectImage()">
+</br>
 <script>
     let good = 0;
     let oops = 0;
+    var useImage=1;
     function checkAuthor() {
         const secretAuthorName = document.getElementById("secretAuthorName").value;
         const guessAuthorName = document.getElementById("guessAuthorName").value;
@@ -36,6 +40,22 @@
         const finalResultElement = document.getElementById("result");
         finalResultElement.innerHTML = `Correct: ${good}, Incorrect: ${oops}`;
     }
+    function selectImage() {
+           switch(useImage){
+              case 1:
+                document.getElementById("imageChange").src="Agra.jpg";
+                useImage++;
+                break;
+              case 2:
+                document.getElementById("imageChange").src="Indianapolis.jpg";
+                useImage++;
+                break;
+              case 3:
+              document.getElementById("imageChange").src="Melbourne.jpg";
+                useImage=1;
+                break;
+           }
+        }
 </script>
 
 </body>
